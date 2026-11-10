@@ -1,221 +1,137 @@
 # pib
 
+Fetch press releases from the [Press Information Bureau, India](https://pib.gov.in) for any date or date range and summarize each release with Google Gemini. Includes a local website, **PIB Depths**, where you pick dates, watch the progress and read the summaries in the browser.
 
-<details>
-<summary>
-<b>PIB articles for the year - 2025</b>
-</summary>
+Useful for candidates preparing for UPSC and other government exams.
 
-<br><b>Dec, 2025</b><br>[![PIB_Daily - Dec 2025](https://img.shields.io/badge/PIB__Daily-Dec_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Dec_2025) [![PIB_Monthly - Dec 2025](https://img.shields.io/badge/PIB__Monthly-Dec_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Dec_2025) [![PIB_Text - Dec 2025](https://img.shields.io/badge/PIB__Text-Dec_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Dec_2025) [![PIB_Links - Dec 2025](https://img.shields.io/badge/PIB__Links-Dec_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Dec_2025)
-<br><b>Nov, 2025</b><br>[![PIB_Daily - Nov 2025](https://img.shields.io/badge/PIB__Daily-Nov_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Nov_2025) [![PIB_Monthly - Nov 2025](https://img.shields.io/badge/PIB__Monthly-Nov_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Nov_2025) [![PIB_Text - Nov 2025](https://img.shields.io/badge/PIB__Text-Nov_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Nov_2025) [![PIB_Links - Nov 2025](https://img.shields.io/badge/PIB__Links-Nov_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Nov_2025)
-<br><b>Oct, 2025</b><br>[![PIB_Daily - Oct 2025](https://img.shields.io/badge/PIB__Daily-Oct_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Oct_2025) [![PIB_Monthly - Oct 2025](https://img.shields.io/badge/PIB__Monthly-Oct_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Oct_2025) [![PIB_Text - Oct 2025](https://img.shields.io/badge/PIB__Text-Oct_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Oct_2025) [![PIB_Links - Oct 2025](https://img.shields.io/badge/PIB__Links-Oct_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Oct_2025)
-<br><b>Sep, 2025</b><br>[![PIB_Daily - Sep 2025](https://img.shields.io/badge/PIB__Daily-Sep_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Sep_2025) [![PIB_Monthly - Sep 2025](https://img.shields.io/badge/PIB__Monthly-Sep_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Sep_2025) [![PIB_Text - Sep 2025](https://img.shields.io/badge/PIB__Text-Sep_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Sep_2025) [![PIB_Links - Sep 2025](https://img.shields.io/badge/PIB__Links-Sep_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Sep_2025)
-<br><b>Aug, 2025</b><br>[![PIB_Daily - Aug 2025](https://img.shields.io/badge/PIB__Daily-Aug_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Aug_2025) [![PIB_Monthly - Aug 2025](https://img.shields.io/badge/PIB__Monthly-Aug_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Aug_2025) [![PIB_Text - Aug 2025](https://img.shields.io/badge/PIB__Text-Aug_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Aug_2025) [![PIB_Links - Aug 2025](https://img.shields.io/badge/PIB__Links-Aug_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Aug_2025)
-<br><b>Jul, 2025</b><br>[![PIB_Daily - Jul 2025](https://img.shields.io/badge/PIB__Daily-Jul_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jul_2025) [![PIB_Monthly - Jul 2025](https://img.shields.io/badge/PIB__Monthly-Jul_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jul_2025) [![PIB_Text - Jul 2025](https://img.shields.io/badge/PIB__Text-Jul_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jul_2025) [![PIB_Links - Jul 2025](https://img.shields.io/badge/PIB__Links-Jul_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jul_2025)
-<br><b>Jun, 2025</b><br>[![PIB_Daily - Jun 2025](https://img.shields.io/badge/PIB__Daily-Jun_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jun_2025) [![PIB_Monthly - Jun 2025](https://img.shields.io/badge/PIB__Monthly-Jun_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jun_2025) [![PIB_Text - Jun 2025](https://img.shields.io/badge/PIB__Text-Jun_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jun_2025) [![PIB_Links - Jun 2025](https://img.shields.io/badge/PIB__Links-Jun_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jun_2025)
-<br><b>May, 2025</b><br>[![PIB_Daily - May 2025](https://img.shields.io/badge/PIB__Daily-May_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_May_2025) [![PIB_Monthly - May 2025](https://img.shields.io/badge/PIB__Monthly-May_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_May_2025) [![PIB_Text - May 2025](https://img.shields.io/badge/PIB__Text-May_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_May_2025) [![PIB_Links - May 2025](https://img.shields.io/badge/PIB__Links-May_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_May_2025)
-<br><b>Apr, 2025</b><br>[![PIB_Daily - Apr 2025](https://img.shields.io/badge/PIB__Daily-Apr_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Apr_2025) [![PIB_Monthly - Apr 2025](https://img.shields.io/badge/PIB__Monthly-Apr_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Apr_2025) [![PIB_Text - Apr 2025](https://img.shields.io/badge/PIB__Text-Apr_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Apr_2025) [![PIB_Links - Apr 2025](https://img.shields.io/badge/PIB__Links-Apr_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Apr_2025)
-<br><b>Mar, 2025</b><br>[![PIB_Daily - Mar 2025](https://img.shields.io/badge/PIB__Daily-Mar_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Mar_2025) [![PIB_Monthly - Mar 2025](https://img.shields.io/badge/PIB__Monthly-Mar_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Mar_2025) [![PIB_Text - Mar 2025](https://img.shields.io/badge/PIB__Text-Mar_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Mar_2025) [![PIB_Links - Mar 2025](https://img.shields.io/badge/PIB__Links-Mar_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Mar_2025)
-<br><b>Feb, 2025</b><br>[![PIB_Daily - Feb 2025](https://img.shields.io/badge/PIB__Daily-Feb_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Feb_2025) [![PIB_Monthly - Feb 2025](https://img.shields.io/badge/PIB__Monthly-Feb_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Feb_2025) [![PIB_Text - Feb 2025](https://img.shields.io/badge/PIB__Text-Feb_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Feb_2025) [![PIB_Links - Feb 2025](https://img.shields.io/badge/PIB__Links-Feb_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Feb_2025)
-<br><b>Jan, 2025</b><br>[![PIB_Daily - Jan 2025](https://img.shields.io/badge/PIB__Daily-Jan_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jan_2025) [![PIB_Monthly - Jan 2025](https://img.shields.io/badge/PIB__Monthly-Jan_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jan_2025) [![PIB_Text - Jan 2025](https://img.shields.io/badge/PIB__Text-Jan_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jan_2025) [![PIB_Links - Jan 2025](https://img.shields.io/badge/PIB__Links-Jan_2025-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jan_2025)
-</details>
+## Features
 
+- Fetches every English press release published on a date (the PIB site goes back to 2017)
+- Saves each article's title, ministry, link and full text as JSON
+- Summarizes every article with Gemini into one text file per date
+- Local web interface: choose a date range, follow live progress, browse, search and filter summaries by ministry
+- Optional (off by default): save each release as a PDF and post summaries to Telegram
 
-<details>
-<summary>
-<b>PIB articles for the year - 2024</b>
-</summary>
+## Requirements
 
-<br><b>Dec, 2024</b><br>[![PIB_Daily - Dec 2024](https://img.shields.io/badge/PIB__Daily-Dec_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Dec_2024) [![PIB_Monthly - Dec 2024](https://img.shields.io/badge/PIB__Monthly-Dec_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Dec_2024) [![PIB_Text - Dec 2024](https://img.shields.io/badge/PIB__Text-Dec_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Dec_2024) [![PIB_Links - Dec 2024](https://img.shields.io/badge/PIB__Links-Dec_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Dec_2024)
-<br><b>Nov, 2024</b><br>[![PIB_Daily - Nov 2024](https://img.shields.io/badge/PIB__Daily-Nov_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Nov_2024) [![PIB_Monthly - Nov 2024](https://img.shields.io/badge/PIB__Monthly-Nov_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Nov_2024) [![PIB_Text - Nov 2024](https://img.shields.io/badge/PIB__Text-Nov_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Nov_2024) [![PIB_Links - Nov 2024](https://img.shields.io/badge/PIB__Links-Nov_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Nov_2024)
-<br><b>Oct, 2024</b><br>[![PIB_Daily - Oct 2024](https://img.shields.io/badge/PIB__Daily-Oct_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Oct_2024) [![PIB_Monthly - Oct 2024](https://img.shields.io/badge/PIB__Monthly-Oct_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Oct_2024) [![PIB_Text - Oct 2024](https://img.shields.io/badge/PIB__Text-Oct_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Oct_2024) [![PIB_Links - Oct 2024](https://img.shields.io/badge/PIB__Links-Oct_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Oct_2024)
-<br><b>Sep, 2024</b><br>[![PIB_Daily - Sep 2024](https://img.shields.io/badge/PIB__Daily-Sep_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Sep_2024) [![PIB_Monthly - Sep 2024](https://img.shields.io/badge/PIB__Monthly-Sep_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Sep_2024) [![PIB_Text - Sep 2024](https://img.shields.io/badge/PIB__Text-Sep_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Sep_2024) [![PIB_Links - Sep 2024](https://img.shields.io/badge/PIB__Links-Sep_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Sep_2024)
-<br><b>Aug, 2024</b><br>[![PIB_Daily - Aug 2024](https://img.shields.io/badge/PIB__Daily-Aug_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Aug_2024) [![PIB_Monthly - Aug 2024](https://img.shields.io/badge/PIB__Monthly-Aug_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Aug_2024) [![PIB_Text - Aug 2024](https://img.shields.io/badge/PIB__Text-Aug_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Aug_2024) [![PIB_Links - Aug 2024](https://img.shields.io/badge/PIB__Links-Aug_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Aug_2024)
-<br><b>Jul, 2024</b><br>[![PIB_Daily - Jul 2024](https://img.shields.io/badge/PIB__Daily-Jul_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jul_2024) [![PIB_Monthly - Jul 2024](https://img.shields.io/badge/PIB__Monthly-Jul_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jul_2024) [![PIB_Text - Jul 2024](https://img.shields.io/badge/PIB__Text-Jul_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jul_2024) [![PIB_Links - Jul 2024](https://img.shields.io/badge/PIB__Links-Jul_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jul_2024)
-<br><b>Jun, 2024</b><br>[![PIB_Daily - Jun 2024](https://img.shields.io/badge/PIB__Daily-Jun_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jun_2024) [![PIB_Monthly - Jun 2024](https://img.shields.io/badge/PIB__Monthly-Jun_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jun_2024) [![PIB_Text - Jun 2024](https://img.shields.io/badge/PIB__Text-Jun_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jun_2024) [![PIB_Links - Jun 2024](https://img.shields.io/badge/PIB__Links-Jun_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jun_2024)
-<br><b>May, 2024</b><br>[![PIB_Daily - May 2024](https://img.shields.io/badge/PIB__Daily-May_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_May_2024) [![PIB_Monthly - May 2024](https://img.shields.io/badge/PIB__Monthly-May_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_May_2024) [![PIB_Text - May 2024](https://img.shields.io/badge/PIB__Text-May_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_May_2024) [![PIB_Links - May 2024](https://img.shields.io/badge/PIB__Links-May_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_May_2024)
-<br><b>Apr, 2024</b><br>[![PIB_Daily - Apr 2024](https://img.shields.io/badge/PIB__Daily-Apr_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Apr_2024) [![PIB_Monthly - Apr 2024](https://img.shields.io/badge/PIB__Monthly-Apr_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Apr_2024) [![PIB_Text - Apr 2024](https://img.shields.io/badge/PIB__Text-Apr_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Apr_2024) [![PIB_Links - Apr 2024](https://img.shields.io/badge/PIB__Links-Apr_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Apr_2024)
-<br><b>Mar, 2024</b><br>[![PIB_Daily - Mar 2024](https://img.shields.io/badge/PIB__Daily-Mar_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Mar_2024) [![PIB_Monthly - Mar 2024](https://img.shields.io/badge/PIB__Monthly-Mar_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Mar_2024) [![PIB_Text - Mar 2024](https://img.shields.io/badge/PIB__Text-Mar_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Mar_2024) [![PIB_Links - Mar 2024](https://img.shields.io/badge/PIB__Links-Mar_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Mar_2024)
-<br><b>Feb, 2024</b><br>[![PIB_Daily - Feb 2024](https://img.shields.io/badge/PIB__Daily-Feb_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Feb_2024) [![PIB_Monthly - Feb 2024](https://img.shields.io/badge/PIB__Monthly-Feb_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Feb_2024) [![PIB_Text - Feb 2024](https://img.shields.io/badge/PIB__Text-Feb_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Feb_2024) [![PIB_Links - Feb 2024](https://img.shields.io/badge/PIB__Links-Feb_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Feb_2024)
-<br><b>Jan, 2024</b><br>[![PIB_Daily - Jan 2024](https://img.shields.io/badge/PIB__Daily-Jan_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jan_2024) [![PIB_Monthly - Jan 2024](https://img.shields.io/badge/PIB__Monthly-Jan_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jan_2024) [![PIB_Text - Jan 2024](https://img.shields.io/badge/PIB__Text-Jan_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jan_2024) [![PIB_Links - Jan 2024](https://img.shields.io/badge/PIB__Links-Jan_2024-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jan_2024)
-</details>
+- Python 3.12 (a conda environment is recommended)
+- A Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey)
+- `wkhtmltopdf`, only if you turn on PDF downloads
 
+## Setup
 
-
-
-<details>
-<summary>
-<b>PIB articles for the year - 2023</b>
-</summary>
-
-<br><b>Dec, 2023</b><br>[![PIB_Daily - Dec 2023](https://img.shields.io/badge/PIB__Daily-Dec_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Dec_2023) [![PIB_Monthly - Dec 2023](https://img.shields.io/badge/PIB__Monthly-Dec_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Dec_2023) [![PIB_Text - Dec 2023](https://img.shields.io/badge/PIB__Text-Dec_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Dec_2023) [![PIB_Links - Dec 2023](https://img.shields.io/badge/PIB__Links-Dec_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Dec_2023)
-<br><b>Nov, 2023</b><br>[![PIB_Daily - Nov 2023](https://img.shields.io/badge/PIB__Daily-Nov_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Nov_2023) [![PIB_Monthly - Nov 2023](https://img.shields.io/badge/PIB__Monthly-Nov_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Nov_2023) [![PIB_Text - Nov 2023](https://img.shields.io/badge/PIB__Text-Nov_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Nov_2023) [![PIB_Links - Nov 2023](https://img.shields.io/badge/PIB__Links-Nov_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Nov_2023)
-<br><b>Oct, 2023</b><br>[![PIB_Daily - Oct 2023](https://img.shields.io/badge/PIB__Daily-Oct_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Oct_2023) [![PIB_Monthly - Oct 2023](https://img.shields.io/badge/PIB__Monthly-Oct_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Oct_2023) [![PIB_Text - Oct 2023](https://img.shields.io/badge/PIB__Text-Oct_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Oct_2023) [![PIB_Links - Oct 2023](https://img.shields.io/badge/PIB__Links-Oct_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Oct_2023)
-<br><b>Sep, 2023</b><br>[![PIB_Daily - Sep 2023](https://img.shields.io/badge/PIB__Daily-Sep_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Sep_2023) [![PIB_Monthly - Sep 2023](https://img.shields.io/badge/PIB__Monthly-Sep_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Sep_2023) [![PIB_Text - Sep 2023](https://img.shields.io/badge/PIB__Text-Sep_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Sep_2023) [![PIB_Links - Sep 2023](https://img.shields.io/badge/PIB__Links-Sep_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Sep_2023)
-<br><b>Aug, 2023</b><br>[![PIB_Daily - Aug 2023](https://img.shields.io/badge/PIB__Daily-Aug_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Aug_2023) [![PIB_Monthly - Aug 2023](https://img.shields.io/badge/PIB__Monthly-Aug_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Aug_2023) [![PIB_Text - Aug 2023](https://img.shields.io/badge/PIB__Text-Aug_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Aug_2023) [![PIB_Links - Aug 2023](https://img.shields.io/badge/PIB__Links-Aug_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Aug_2023)
-<br><b>Jul, 2023</b><br>[![PIB_Daily - Jul 2023](https://img.shields.io/badge/PIB__Daily-Jul_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jul_2023) [![PIB_Monthly - Jul 2023](https://img.shields.io/badge/PIB__Monthly-Jul_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jul_2023) [![PIB_Text - Jul 2023](https://img.shields.io/badge/PIB__Text-Jul_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jul_2023) [![PIB_Links - Jul 2023](https://img.shields.io/badge/PIB__Links-Jul_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jul_2023)
-<br><b>Jun, 2023</b><br>[![PIB_Daily - Jun 2023](https://img.shields.io/badge/PIB__Daily-Jun_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jun_2023) [![PIB_Monthly - Jun 2023](https://img.shields.io/badge/PIB__Monthly-Jun_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jun_2023) [![PIB_Text - Jun 2023](https://img.shields.io/badge/PIB__Text-Jun_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jun_2023) [![PIB_Links - Jun 2023](https://img.shields.io/badge/PIB__Links-Jun_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jun_2023)
-<br><b>May, 2023</b><br>[![PIB_Daily - May 2023](https://img.shields.io/badge/PIB__Daily-May_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_May_2023) [![PIB_Monthly - May 2023](https://img.shields.io/badge/PIB__Monthly-May_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_May_2023) [![PIB_Text - May 2023](https://img.shields.io/badge/PIB__Text-May_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_May_2023) [![PIB_Links - May 2023](https://img.shields.io/badge/PIB__Links-May_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_May_2023)
-<br><b>Apr, 2023</b><br>[![PIB_Daily - Apr 2023](https://img.shields.io/badge/PIB__Daily-Apr_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Apr_2023) [![PIB_Monthly - Apr 2023](https://img.shields.io/badge/PIB__Monthly-Apr_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Apr_2023) [![PIB_Text - Apr 2023](https://img.shields.io/badge/PIB__Text-Apr_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Apr_2023) [![PIB_Links - Apr 2023](https://img.shields.io/badge/PIB__Links-Apr_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Apr_2023)
-<br><b>Mar, 2023</b><br>[![PIB_Daily - Mar 2023](https://img.shields.io/badge/PIB__Daily-Mar_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Mar_2023) [![PIB_Monthly - Mar 2023](https://img.shields.io/badge/PIB__Monthly-Mar_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Mar_2023) [![PIB_Text - Mar 2023](https://img.shields.io/badge/PIB__Text-Mar_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Mar_2023) [![PIB_Links - Mar 2023](https://img.shields.io/badge/PIB__Links-Mar_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Mar_2023)
-<br><b>Feb, 2023</b><br>[![PIB_Daily - Feb 2023](https://img.shields.io/badge/PIB__Daily-Feb_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Feb_2023) [![PIB_Monthly - Feb 2023](https://img.shields.io/badge/PIB__Monthly-Feb_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Feb_2023) [![PIB_Text - Feb 2023](https://img.shields.io/badge/PIB__Text-Feb_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Feb_2023) [![PIB_Links - Feb 2023](https://img.shields.io/badge/PIB__Links-Feb_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Feb_2023)
-<br><b>Jan, 2023</b><br>[![PIB_Daily - Jan 2023](https://img.shields.io/badge/PIB__Daily-Jan_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jan_2023) [![PIB_Monthly - Jan 2023](https://img.shields.io/badge/PIB__Monthly-Jan_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jan_2023) [![PIB_Text - Jan 2023](https://img.shields.io/badge/PIB__Text-Jan_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jan_2023) [![PIB_Links - Jan 2023](https://img.shields.io/badge/PIB__Links-Jan_2023-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jan_2023)
-</details>
-
-<details>
-<summary>
-<b>PIB articles for the year - 2022</b>
-</summary>
-
-<br><b>Dec, 2022</b><br>[![PIB_Daily - Dec 2022](https://img.shields.io/badge/PIB__Daily-Dec_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Dec_2022) [![PIB_Monthly - Dec 2022](https://img.shields.io/badge/PIB__Monthly-Dec_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Dec_2022) [![PIB_Text - Dec 2022](https://img.shields.io/badge/PIB__Text-Dec_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Dec_2022) [![PIB_Links - Dec 2022](https://img.shields.io/badge/PIB__Links-Dec_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Dec_2022)
-<br><b>Nov, 2022</b><br>[![PIB_Daily - Nov 2022](https://img.shields.io/badge/PIB__Daily-Nov_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Nov_2022) [![PIB_Monthly - Nov 2022](https://img.shields.io/badge/PIB__Monthly-Nov_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Nov_2022) [![PIB_Text - Nov 2022](https://img.shields.io/badge/PIB__Text-Nov_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Nov_2022) [![PIB_Links - Nov 2022](https://img.shields.io/badge/PIB__Links-Nov_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Nov_2022)
-<br><b>Oct, 2022</b><br>[![PIB_Daily - Oct 2022](https://img.shields.io/badge/PIB__Daily-Oct_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Oct_2022) [![PIB_Monthly - Oct 2022](https://img.shields.io/badge/PIB__Monthly-Oct_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Oct_2022) [![PIB_Text - Oct 2022](https://img.shields.io/badge/PIB__Text-Oct_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Oct_2022) [![PIB_Links - Oct 2022](https://img.shields.io/badge/PIB__Links-Oct_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Oct_2022)
-<br><b>Sep, 2022</b><br>[![PIB_Daily - Sep 2022](https://img.shields.io/badge/PIB__Daily-Sep_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Sep_2022) [![PIB_Monthly - Sep 2022](https://img.shields.io/badge/PIB__Monthly-Sep_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Sep_2022) [![PIB_Text - Sep 2022](https://img.shields.io/badge/PIB__Text-Sep_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Sep_2022) [![PIB_Links - Sep 2022](https://img.shields.io/badge/PIB__Links-Sep_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Sep_2022)
-<br><b>Aug, 2022</b><br>[![PIB_Daily - Aug 2022](https://img.shields.io/badge/PIB__Daily-Aug_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Aug_2022) [![PIB_Monthly - Aug 2022](https://img.shields.io/badge/PIB__Monthly-Aug_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Aug_2022) [![PIB_Text - Aug 2022](https://img.shields.io/badge/PIB__Text-Aug_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Aug_2022) [![PIB_Links - Aug 2022](https://img.shields.io/badge/PIB__Links-Aug_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Aug_2022)
-<br><b>Jul, 2022</b><br>[![PIB_Daily - Jul 2022](https://img.shields.io/badge/PIB__Daily-Jul_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jul_2022) [![PIB_Monthly - Jul 2022](https://img.shields.io/badge/PIB__Monthly-Jul_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jul_2022) [![PIB_Text - Jul 2022](https://img.shields.io/badge/PIB__Text-Jul_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jul_2022) [![PIB_Links - Jul 2022](https://img.shields.io/badge/PIB__Links-Jul_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jul_2022)
-<br><b>Jun, 2022</b><br>[![PIB_Daily - Jun 2022](https://img.shields.io/badge/PIB__Daily-Jun_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jun_2022) [![PIB_Monthly - Jun 2022](https://img.shields.io/badge/PIB__Monthly-Jun_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jun_2022) [![PIB_Text - Jun 2022](https://img.shields.io/badge/PIB__Text-Jun_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jun_2022) [![PIB_Links - Jun 2022](https://img.shields.io/badge/PIB__Links-Jun_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jun_2022)
-<br><b>May, 2022</b><br>[![PIB_Daily - May 2022](https://img.shields.io/badge/PIB__Daily-May_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_May_2022) [![PIB_Monthly - May 2022](https://img.shields.io/badge/PIB__Monthly-May_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_May_2022) [![PIB_Text - May 2022](https://img.shields.io/badge/PIB__Text-May_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_May_2022) [![PIB_Links - May 2022](https://img.shields.io/badge/PIB__Links-May_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_May_2022)
-<br><b>Apr, 2022</b><br>[![PIB_Daily - Apr 2022](https://img.shields.io/badge/PIB__Daily-Apr_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Apr_2022) [![PIB_Monthly - Apr 2022](https://img.shields.io/badge/PIB__Monthly-Apr_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Apr_2022) [![PIB_Text - Apr 2022](https://img.shields.io/badge/PIB__Text-Apr_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Apr_2022) [![PIB_Links - Apr 2022](https://img.shields.io/badge/PIB__Links-Apr_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Apr_2022)
-<br><b>Mar, 2022</b><br>[![PIB_Daily - Mar 2022](https://img.shields.io/badge/PIB__Daily-Mar_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Mar_2022) [![PIB_Monthly - Mar 2022](https://img.shields.io/badge/PIB__Monthly-Mar_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Mar_2022) [![PIB_Text - Mar 2022](https://img.shields.io/badge/PIB__Text-Mar_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Mar_2022) [![PIB_Links - Mar 2022](https://img.shields.io/badge/PIB__Links-Mar_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Mar_2022)
-<br><b>Feb, 2022</b><br>[![PIB_Daily - Feb 2022](https://img.shields.io/badge/PIB__Daily-Feb_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Feb_2022) [![PIB_Monthly - Feb 2022](https://img.shields.io/badge/PIB__Monthly-Feb_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Feb_2022) [![PIB_Text - Feb 2022](https://img.shields.io/badge/PIB__Text-Feb_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Feb_2022) [![PIB_Links - Feb 2022](https://img.shields.io/badge/PIB__Links-Feb_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Feb_2022)
-<br><b>Jan, 2022</b><br>[![PIB_Daily - Jan 2022](https://img.shields.io/badge/PIB__Daily-Jan_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jan_2022) [![PIB_Monthly - Jan 2022](https://img.shields.io/badge/PIB__Monthly-Jan_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jan_2022) [![PIB_Text - Jan 2022](https://img.shields.io/badge/PIB__Text-Jan_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jan_2022) [![PIB_Links - Jan 2022](https://img.shields.io/badge/PIB__Links-Jan_2022-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jan_2022)
-</details>
-<details>
-<summary>
-<b>PIB articles for the year - 2021</b>
-</summary>
-
-<br><b>Dec, 2021</b><br>[![PIB_Daily - Dec 2021](https://img.shields.io/badge/PIB__Daily-Dec_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Dec_2021) [![PIB_Monthly - Dec 2021](https://img.shields.io/badge/PIB__Monthly-Dec_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Dec_2021) [![PIB_Text - Dec 2021](https://img.shields.io/badge/PIB__Text-Dec_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Dec_2021) [![PIB_Links - Dec 2021](https://img.shields.io/badge/PIB__Links-Dec_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Dec_2021)
-<br><b>Nov, 2021</b><br>[![PIB_Daily - Nov 2021](https://img.shields.io/badge/PIB__Daily-Nov_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Nov_2021) [![PIB_Monthly - Nov 2021](https://img.shields.io/badge/PIB__Monthly-Nov_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Nov_2021) [![PIB_Text - Nov 2021](https://img.shields.io/badge/PIB__Text-Nov_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Nov_2021) [![PIB_Links - Nov 2021](https://img.shields.io/badge/PIB__Links-Nov_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Nov_2021)
-<br><b>Oct, 2021</b><br>[![PIB_Daily - Oct 2021](https://img.shields.io/badge/PIB__Daily-Oct_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Oct_2021) [![PIB_Monthly - Oct 2021](https://img.shields.io/badge/PIB__Monthly-Oct_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Oct_2021) [![PIB_Text - Oct 2021](https://img.shields.io/badge/PIB__Text-Oct_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Oct_2021) [![PIB_Links - Oct 2021](https://img.shields.io/badge/PIB__Links-Oct_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Oct_2021)
-<br><b>Sep, 2021</b><br>[![PIB_Daily - Sep 2021](https://img.shields.io/badge/PIB__Daily-Sep_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Sep_2021) [![PIB_Monthly - Sep 2021](https://img.shields.io/badge/PIB__Monthly-Sep_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Sep_2021) [![PIB_Text - Sep 2021](https://img.shields.io/badge/PIB__Text-Sep_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Sep_2021) [![PIB_Links - Sep 2021](https://img.shields.io/badge/PIB__Links-Sep_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Sep_2021)
-<br><b>Aug, 2021</b><br>[![PIB_Daily - Aug 2021](https://img.shields.io/badge/PIB__Daily-Aug_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Aug_2021) [![PIB_Monthly - Aug 2021](https://img.shields.io/badge/PIB__Monthly-Aug_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Aug_2021) [![PIB_Text - Aug 2021](https://img.shields.io/badge/PIB__Text-Aug_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Aug_2021) [![PIB_Links - Aug 2021](https://img.shields.io/badge/PIB__Links-Aug_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Aug_2021)
-<br><b>Jul, 2021</b><br>[![PIB_Daily - Jul 2021](https://img.shields.io/badge/PIB__Daily-Jul_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jul_2021) [![PIB_Monthly - Jul 2021](https://img.shields.io/badge/PIB__Monthly-Jul_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jul_2021) [![PIB_Text - Jul 2021](https://img.shields.io/badge/PIB__Text-Jul_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jul_2021) [![PIB_Links - Jul 2021](https://img.shields.io/badge/PIB__Links-Jul_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jul_2021)
-<br><b>Jun, 2021</b><br>[![PIB_Daily - Jun 2021](https://img.shields.io/badge/PIB__Daily-Jun_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jun_2021) [![PIB_Monthly - Jun 2021](https://img.shields.io/badge/PIB__Monthly-Jun_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jun_2021) [![PIB_Text - Jun 2021](https://img.shields.io/badge/PIB__Text-Jun_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jun_2021) [![PIB_Links - Jun 2021](https://img.shields.io/badge/PIB__Links-Jun_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jun_2021)
-<br><b>May, 2021</b><br>[![PIB_Daily - May 2021](https://img.shields.io/badge/PIB__Daily-May_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_May_2021) [![PIB_Monthly - May 2021](https://img.shields.io/badge/PIB__Monthly-May_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_May_2021) [![PIB_Text - May 2021](https://img.shields.io/badge/PIB__Text-May_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_May_2021) [![PIB_Links - May 2021](https://img.shields.io/badge/PIB__Links-May_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_May_2021)
-<br><b>Apr, 2021</b><br>[![PIB_Daily - Apr 2021](https://img.shields.io/badge/PIB__Daily-Apr_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Apr_2021) [![PIB_Monthly - Apr 2021](https://img.shields.io/badge/PIB__Monthly-Apr_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Apr_2021) [![PIB_Text - Apr 2021](https://img.shields.io/badge/PIB__Text-Apr_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Apr_2021) [![PIB_Links - Apr 2021](https://img.shields.io/badge/PIB__Links-Apr_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Apr_2021)
-<br><b>Mar, 2021</b><br>[![PIB_Daily - Mar 2021](https://img.shields.io/badge/PIB__Daily-Mar_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Mar_2021) [![PIB_Monthly - Mar 2021](https://img.shields.io/badge/PIB__Monthly-Mar_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Mar_2021) [![PIB_Text - Mar 2021](https://img.shields.io/badge/PIB__Text-Mar_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Mar_2021) [![PIB_Links - Mar 2021](https://img.shields.io/badge/PIB__Links-Mar_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Mar_2021)
-<br><b>Feb, 2021</b><br>[![PIB_Daily - Feb 2021](https://img.shields.io/badge/PIB__Daily-Feb_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Feb_2021) [![PIB_Monthly - Feb 2021](https://img.shields.io/badge/PIB__Monthly-Feb_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Feb_2021) [![PIB_Text - Feb 2021](https://img.shields.io/badge/PIB__Text-Feb_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Feb_2021) [![PIB_Links - Feb 2021](https://img.shields.io/badge/PIB__Links-Feb_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Feb_2021)
-<br><b>Jan, 2021</b><br>[![PIB_Daily - Jan 2021](https://img.shields.io/badge/PIB__Daily-Jan_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jan_2021) [![PIB_Monthly - Jan 2021](https://img.shields.io/badge/PIB__Monthly-Jan_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jan_2021) [![PIB_Text - Jan 2021](https://img.shields.io/badge/PIB__Text-Jan_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jan_2021) [![PIB_Links - Jan 2021](https://img.shields.io/badge/PIB__Links-Jan_2021-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jan_2021)
-</details>
-<details>
-<summary>
-<b>PIB articles for the year - 2020</b>
-</summary>
-
-<br><b>Dec, 2020</b><br>[![PIB_Daily - Dec 2020](https://img.shields.io/badge/PIB__Daily-Dec_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Dec_2020) [![PIB_Monthly - Dec 2020](https://img.shields.io/badge/PIB__Monthly-Dec_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Dec_2020) [![PIB_Text - Dec 2020](https://img.shields.io/badge/PIB__Text-Dec_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Dec_2020) [![PIB_Links - Dec 2020](https://img.shields.io/badge/PIB__Links-Dec_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Dec_2020)
-<br><b>Nov, 2020</b><br>[![PIB_Daily - Nov 2020](https://img.shields.io/badge/PIB__Daily-Nov_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Nov_2020) [![PIB_Monthly - Nov 2020](https://img.shields.io/badge/PIB__Monthly-Nov_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Nov_2020) [![PIB_Text - Nov 2020](https://img.shields.io/badge/PIB__Text-Nov_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Nov_2020) [![PIB_Links - Nov 2020](https://img.shields.io/badge/PIB__Links-Nov_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Nov_2020)
-<br><b>Oct, 2020</b><br>[![PIB_Daily - Oct 2020](https://img.shields.io/badge/PIB__Daily-Oct_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Oct_2020) [![PIB_Monthly - Oct 2020](https://img.shields.io/badge/PIB__Monthly-Oct_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Oct_2020) [![PIB_Text - Oct 2020](https://img.shields.io/badge/PIB__Text-Oct_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Oct_2020) [![PIB_Links - Oct 2020](https://img.shields.io/badge/PIB__Links-Oct_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Oct_2020)
-<br><b>Sep, 2020</b><br>[![PIB_Daily - Sep 2020](https://img.shields.io/badge/PIB__Daily-Sep_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Sep_2020) [![PIB_Monthly - Sep 2020](https://img.shields.io/badge/PIB__Monthly-Sep_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Sep_2020) [![PIB_Text - Sep 2020](https://img.shields.io/badge/PIB__Text-Sep_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Sep_2020) [![PIB_Links - Sep 2020](https://img.shields.io/badge/PIB__Links-Sep_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Sep_2020)
-<br><b>Aug, 2020</b><br>[![PIB_Daily - Aug 2020](https://img.shields.io/badge/PIB__Daily-Aug_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Aug_2020) [![PIB_Monthly - Aug 2020](https://img.shields.io/badge/PIB__Monthly-Aug_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Aug_2020) [![PIB_Text - Aug 2020](https://img.shields.io/badge/PIB__Text-Aug_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Aug_2020) [![PIB_Links - Aug 2020](https://img.shields.io/badge/PIB__Links-Aug_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Aug_2020)
-<br><b>Jul, 2020</b><br>[![PIB_Daily - Jul 2020](https://img.shields.io/badge/PIB__Daily-Jul_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jul_2020) [![PIB_Monthly - Jul 2020](https://img.shields.io/badge/PIB__Monthly-Jul_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jul_2020) [![PIB_Text - Jul 2020](https://img.shields.io/badge/PIB__Text-Jul_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jul_2020) [![PIB_Links - Jul 2020](https://img.shields.io/badge/PIB__Links-Jul_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jul_2020)
-<br><b>Jun, 2020</b><br>[![PIB_Daily - Jun 2020](https://img.shields.io/badge/PIB__Daily-Jun_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jun_2020) [![PIB_Monthly - Jun 2020](https://img.shields.io/badge/PIB__Monthly-Jun_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jun_2020) [![PIB_Text - Jun 2020](https://img.shields.io/badge/PIB__Text-Jun_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jun_2020) [![PIB_Links - Jun 2020](https://img.shields.io/badge/PIB__Links-Jun_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jun_2020)
-<br><b>May, 2020</b><br>[![PIB_Daily - May 2020](https://img.shields.io/badge/PIB__Daily-May_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_May_2020) [![PIB_Monthly - May 2020](https://img.shields.io/badge/PIB__Monthly-May_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_May_2020) [![PIB_Text - May 2020](https://img.shields.io/badge/PIB__Text-May_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_May_2020) [![PIB_Links - May 2020](https://img.shields.io/badge/PIB__Links-May_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_May_2020)
-<br><b>Apr, 2020</b><br>[![PIB_Daily - Apr 2020](https://img.shields.io/badge/PIB__Daily-Apr_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Apr_2020) [![PIB_Monthly - Apr 2020](https://img.shields.io/badge/PIB__Monthly-Apr_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Apr_2020) [![PIB_Text - Apr 2020](https://img.shields.io/badge/PIB__Text-Apr_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Apr_2020) [![PIB_Links - Apr 2020](https://img.shields.io/badge/PIB__Links-Apr_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Apr_2020)
-<br><b>Mar, 2020</b><br>[![PIB_Daily - Mar 2020](https://img.shields.io/badge/PIB__Daily-Mar_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Mar_2020) [![PIB_Monthly - Mar 2020](https://img.shields.io/badge/PIB__Monthly-Mar_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Mar_2020) [![PIB_Text - Mar 2020](https://img.shields.io/badge/PIB__Text-Mar_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Mar_2020) [![PIB_Links - Mar 2020](https://img.shields.io/badge/PIB__Links-Mar_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Mar_2020)
-<br><b>Feb, 2020</b><br>[![PIB_Daily - Feb 2020](https://img.shields.io/badge/PIB__Daily-Feb_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Feb_2020) [![PIB_Monthly - Feb 2020](https://img.shields.io/badge/PIB__Monthly-Feb_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Feb_2020) [![PIB_Text - Feb 2020](https://img.shields.io/badge/PIB__Text-Feb_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Feb_2020) [![PIB_Links - Feb 2020](https://img.shields.io/badge/PIB__Links-Feb_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Feb_2020)
-<br><b>Jan, 2020</b><br>[![PIB_Daily - Jan 2020](https://img.shields.io/badge/PIB__Daily-Jan_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Daily_Jan_2020) [![PIB_Monthly - Jan 2020](https://img.shields.io/badge/PIB__Monthly-Jan_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Monthly_Jan_2020) [![PIB_Text - Jan 2020](https://img.shields.io/badge/PIB__Text-Jan_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Text_Jan_2020) [![PIB_Links - Jan 2020](https://img.shields.io/badge/PIB__Links-Jan_2020-2ea44f)](https://github.com/nit-in/pib/releases/tag/PIB_Links_Jan_2020)
-</details>
-
-Download articles from [Press Information Bureau, India](https://www.pib.gov.in).
-This might be helpful for candidates preparing for different govt examinations.
-
-## Downloading Articles:
-
-<b>Join the telegram channel to get PIB Articles daily, click [here](https://t.me/pibarticles)</b>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;or<br>
-You can either use the spider by cloning this repo and following the instructions given below<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;or<br>
-You can download the articles direcly from the release section or by clicking on the <b>badges</b> above for the year and month.
-
-There are 4 different kind of zips in the release section for every month
-1. <b>Day wise</b> PIB_Daily | MMM_YYYY : These zips contain the PIB articles for the date <i>DD/MMM/YYYY</i>
-2. <b>Month wise</b> PIB_Monthly | MMM_YYYY : These zips contain the PIB articles for the whole month <i>MMM/YYYY</i>
-3. <b>Text files</b> PIB_Text | MMM_YYYY : These zips contain the text extracted from pdf of the whole month <i>MMM/YYYY</i>
-4. <b>Article Link files</b> PIB_LINKS | MMM_YYYY : These text files contains links for the article for the date <i>DD/MMM/YYYY</i>
-
-## How to use:
-
-```shell
-
-#Clone the repo with:
-git clone https://github.com/nit-in/pib
-#cd to the cloned repo
+```bash
+git clone https://github.com/saransh0988/pib
 cd pib
-#installing required packages
+
+conda create -n pib python=3.12
+conda activate pib
 pip install -r requirements.txt
-#when these steps are done,you are ready to run the spider and download the articles.
-
-#source the env file
-source .env
-
-#if you are using shell other than bash then 
-bash --init-file .env
-
-#run the spider
-pib start_date end_date #(date format: yyyy-mm-dd)
-#example => to download the articles from June 1st, 2021 to June 15th, 2021; use
-pib 2021-06-01 2021-06-15
 ```
 
-For an Entire Month
+Store your Gemini key in a `.secrets` file in the project folder. It is listed in `.gitignore`, so it is never committed:
 
-```shell
-#For the month of Jan, 2021
-pib_month Jan 2021
+```bash
+echo 'export GEMINI_API_KEY="your-key-here"' > .secrets
+chmod 600 .secrets
+```
 
-#For the month of Dec, 2020
-pib_month Dec 2020
+> Never put keys in `.env`. That file is tracked by git and holds the shell helper functions.
 
-#For present day
-pib_today
+## Using the website
 
-#For last day
-pib_last_day
-``` 
+```bash
+conda activate pib
+cd pib
+python webapp/server.py
+```
 
-> You can now fork the repo and Go to (You may have add repo secret named PIB) check the [process](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-secrets-for-your-repository-and-organization-for-github-codespaces#:~:text=Adding%20secrets%20for%20a%20repository,-To%20create%20secrets&text=Under%20your%20repository%20name%2C%20click,page%2C%20click%20New%20repository%20secret.)
-> 
-> ```
-> Actions > Select "PIB_INDIA_MINISTRY" > Run workflow
-> and Select appropriate options and run the workflow
-> ```
-> 
-> ![IMG_20231106_101656](https://user-images.githubusercontent.com/8947263/280597016-38355326-e425-4cd0-9d93-156d39abded5.jpg)
-> 
-> To run locally
-> 
-> ```
-> source .env
-> pib_min start_date end_date ministry_code
-> ```
-> 
-> **For ministry code check ministries.txt file for desired ministry**
-## Read this if you are forking the repo
+Open **http://127.0.0.1:8000** in your browser. The server reads the Gemini key from `.secrets` by itself. Press `Ctrl+C` in the terminal to stop it.
 
-you may have trouble with github tokens when you are running it after forking it
-click on profile icon > Settings > Developer settings > Personal access tokens > generate new token(classic)
-Name it, no expiration
-in scopes > select repo, workflow, write and delete packages, 
-then generate and copy it
-![IMG_20231117_204211.jpg](https://github.com/nit-in/pib/assets/8947263/f4ae732c-db31-4cda-8dbc-caa8f2496bdc)
+- **Dive**: pick a start and end date (up to 31 days) and press **DIVE**. Dates that already have a summary are skipped unless you tick *Re-summarize*.
+- **Sonar**: live progress for each day and article. **SURFACE** stops the run.
+- **Logbook**: every date that has a summary file. Click one to read it, search the text or filter by ministry.
 
+The server only listens on your own computer. Use another port with `PIB_WEB_PORT=8080 python webapp/server.py`.
 
+> Always start the server from the `pib` environment. The spider runs with the same Python as the server.
 
+## Using the command line
 
- then go to pib repo
-Settings > Secrets and variables > Actions
-here new repository secret
-in name enter PIB ( all in caps)
-and in secret > paste the token you copied
-![IMG_20231117_204101.jpg](https://github.com/nit-in/pib/assets/8947263/df02db15-7238-4f09-b11a-fa86477cdcb3)
+Run from the project folder, the one that contains `scrapy.cfg`:
 
+```bash
+conda activate pib
+source .secrets
 
+# one date
+scrapy crawl pib_daily -a rel_date=2025-06-15
 
+# a date range
+d=2025-06-10; end=2025-06-15
+while [[ "$d" < "$end" || "$d" == "$end" ]]; do
+  scrapy crawl pib_daily -a rel_date="$d"
+  d=$(date -I --date="$d +1 day")
+done
+```
 
+To fetch one ministry only, use the `pib` spider with a code from `ministries.txt`:
 
+```bash
+scrapy crawl pib -a rel_date=2025-06-15 -a rel_mincode=<code>
+```
 
+## Output
 
+Everything is written to `~/pib/`:
 
-Any suggestions and improvements are welcome.
-And do follow me.
+| Folder | Contents |
+|---|---|
+| `~/pib/summaries/` | `15_Jun_2025.txt`: numbered summaries of all releases of that date |
+| `~/pib/json_dir/` | `PIB_JSON_15_Jun_2025.json`: id, date, title, ministry, link and full text of each release |
+| `~/pib/article_links/` | `PIB_LINKS_15_Jun_2025.txt`: links to all releases of that date |
+| `~/pib/articles/` | `2025/Jun/15/<Ministry>/<PRID>.pdf`: PDFs, only when PDF download is on |
+
+The website's logbook is simply the list of files in `~/pib/summaries/`. Stopping the server loses nothing.
+
+## Settings
+
+Edit `pibindia/spiders/config.py`:
+
+| Setting | Default | Meaning |
+|---|---|---|
+| `ENABLE_DAILY_SUMMARY` | `True` | Write the per-date Gemini summary file |
+| `GEMINI_MODEL` | `gemini-3.5-flash` | Gemini model used for summaries |
+| `ENABLE_PDF_DOWNLOAD` | `False` | Save each release as a PDF (needs `wkhtmltopdf`) |
+| `ENABLE_TELEGRAM` | `False` | Post each summary to Telegram (needs `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`) |
+| `PIB_LISTING_URL` | English listing | `lang=1` selects English; the site defaults to Hindi without it |
+
+## Gemini limits
+
+The free tier allows a limited number of requests per model per day (20 at the time of writing), and one request is made per article. A busy day has 50 to 70 releases, so free-tier runs stop with `429 RESOURCE_EXHAUSTED` once the limit is reached. The limit resets daily. Turn on billing for your Google project for higher limits.
+
+## Project layout
+
+```
+pibindia/
+  spiders/
+    pib_daily.py      one date, all ministries
+    pib.py            one date, one ministry code
+    pib_archives.py   old archive site (not maintained right now)
+    config.py         folders and settings
+  modules/
+    get_article.py    fetches an article's text
+    tg_summary.py     Gemini summaries and Telegram posting
+    daily_summary.py  writes the per-date summary file
+webapp/
+  server.py           local web server (Python standard library only)
+  index.html          the PIB Depths interface
+.env                  shell helpers used by the GitHub Actions workflows
+.github/workflows/    scheduled workflows (Actions is disabled on this repo)
+```
+
+## Credits
+
+Based on [nit-in/pib](https://github.com/nit-in/pib), which provides the original scraper, the PDF archive and the GitHub Actions workflows. This version adds the English listing fix, Gemini summaries and the web interface.
+
+Data © Press Information Bureau, Government of India.
