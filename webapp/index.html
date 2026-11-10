@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PIB Depths</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --abyss: #050a14;
+    --deep: #0b1526;
+    --shallow: #101d33;
+    --line: #1b2c47;
+    --hairline: #7d93b838;
+    --drift: #7d93b8;
+    --foam: #e8f1ff;
+    --cyan: #4de3ff;
+    --cyan-hi: #b8f2ff;
+    --cyan-lo: #1e8aa8;
+    --pink: #ff5d8f;
+    --gold: #ffd166;
+    --orange: #ff9f43;
+    --violet: #bfa7ff;
+    --pixel: "VT323", ui-monospace, "Courier New", monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --snap: cubic-bezier(.34, 1.56, .64, 1);
+    --out: cubic-bezier(.22, 1, .36, 1);
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    background: linear-gradient(#0b1526, #050a14 45%, #03070f) fixed;
+    color: var(--foam);
+    font: 15px/1.6 var(--sans);
+    padding: 0 16px 64px;
+    overflow-x: hidden;
+  }
+  /* scanlines */
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50;
+    background: linear-gradient(0deg, #00000033 0 1px, transparent 1px 3px);
+    opacity: .5;
+  }
+  /* light rays from the surface */
+  body::after {
+    content: ""; position: fixed; inset: -20% -10% auto; height: 70vh; pointer-events: none; z-index: -1;
+    background: radial-gradient(ellipse at 50% 0%, #4de3ff1f, transparent 60%);
+  }
+
+  .bubbles { position: fixed; inset: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+  .bubbles i {
+    position: absolute; bottom: -20px; width: 6px; height: 6px;
+    border: 1px solid #4de3ff66; background: #4de3ff14;
+    animation: rise linear infinite;
+  }
+  @keyframes rise {
+    from { transform: translate(0, 0); opacity: 0; }
+    10% { opacity: 1; }
+    to { transform: translate(30px, -110vh); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bubbles { display: none; }
+    * { animation-duration: 0s !important; transition-duration: 0s !important; }
+  }
+
+  .wrap { max-width: 960px; margin: 0 auto; }
+
+  /* ---------- header ---------- */
+  header { padding: 36px 0 20px; text-align: center; }
+  .logo {
+    font: 400 clamp(52px, 11vw, 88px)/0.9 var(--pixel);
+    letter-spacing: .06em; margin: 0;
+    color: var(--cyan);
+    text-shadow: 0 0 18px #4de3ff88, 0 4px 0 #0a3a48;
+    cursor: pointer; user-select: none;
+  }
+  .logo span { color: var(--gold); text-shadow: 0 0 18px #ffd16688, 0 4px 0 #5a4300; }
+  .tag { font: 22px/1.2 var(--pixel); color: var(--drift); margin: 10px 0 0; letter-spacing: .04em; }
+  .depth {
+    display: inline-flex; gap: 10px; align-items: center; margin-top: 14px;
+    font: 18px var(--pixel); color: var(--drift);
+    border: 1px solid var(--line); background: #050a14cc; padding: 2px 12px;
+  }
+  .depth b { color: var(--cyan); font-weight: 400; }
+
+  /* ---------- panels ---------- */
+  .panel {
+    position: relative;
+    background: linear-gradient(#24365a 0 3px, #101d33 3px calc(100% - 4px), #070d1a calc(100% - 4px) 100%);
+    border: 2px solid var(--line);
+    box-shadow: 0 0 0 2px #050a14, 0 10px 30px #00000080;
+    padding: 22px 22px 24px;
+    margin-top: 22px;
+  }
+  .panel h2 {
+    font: 400 30px/1 var(--pixel); margin: 0 0 4px; letter-spacing: .05em; color: var(--foam);
+  }
+  .panel .sub { margin: 0 0 18px; color: var(--drift); font-size: 14px; }
+  .corner {
+    position: absolute; top: -13px; left: 18px; padding: 0 8px;
+    font: 18px var(--pixel); background: var(--abyss); color: var(--pink); letter-spacing: .1em;
+    border: 1px solid var(--line);
+  }
+
+  /* ---------- form ---------- */
+  .row { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end; }
+  .field { display: flex; flex-direction: column; gap: 6px; flex: 1 1 180px; }
+  .field label { font: 20px var(--pixel); color: var(--drift); letter-spacing: .05em; }
+  input[type=date], input[type=search] {
+    font: 22px var(--pixel); color: var(--foam);
+    background: #050a14; border: 2px solid var(--line);
+    padding: 8px 12px; min-height: 48px; width: 100%;
+    outline: none; border-radius: 0;
+  }
+  input[type=date]::-webkit-calendar-picker-indicator { filter: invert(78%) sepia(60%) saturate(800%) hue-rotate(150deg); cursor: pointer; }
+  input:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px #4de3ff33; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 4px; }
+  .chip {
+    font: 19px/1 var(--pixel); color: var(--cyan); background: #4de3ff12;
+    border: 1px solid #4de3ff55; padding: 6px 12px; cursor: pointer; letter-spacing: .03em;
+    transition: background .15s, transform .15s var(--snap);
+  }
+  .chip:hover { background: #4de3ff2a; transform: translateY(-2px); }
+
+  .check { display: flex; align-items: center; gap: 10px; margin-top: 14px; color: var(--drift); cursor: pointer; font-size: 14px; }
+  .check input { width: 18px; height: 18px; accent-color: var(--pink); }
+
+  .btn {
+    --top: var(--cyan-hi); --mid: var(--cyan); --bot: var(--cyan-lo); --shadow: #0a3a48;
+    font: 400 28px/1 var(--pixel); letter-spacing: .1em; color: #050a14;
+    background: linear-gradient(180deg, var(--top) 0 4px, var(--mid) 4px calc(100% - 5px), var(--bot) calc(100% - 5px) 100%);
+    border: 0; padding: 12px 26px 14px; cursor: pointer; min-height: 52px;
+    box-shadow: 0 0 0 2px #050a14, 0 5px 0 2px var(--shadow), 0 0 24px #4de3ff44;
+    transition: transform .12s var(--snap), box-shadow .12s, filter .15s;
+  }
+  .btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .btn:active { transform: translateY(4px); box-shadow: 0 0 0 2px #050a14, 0 1px 0 2px var(--shadow); }
+  .btn:disabled { filter: grayscale(.8) brightness(.6); cursor: not-allowed; transform: none; }
+  .btn.pink { --top: #ffb3c9; --mid: var(--pink); --bot: #b3305a; --shadow: #4a0f22; box-shadow: 0 0 0 2px #050a14, 0 5px 0 2px #4a0f22, 0 0 24px #ff5d8f44; color: #14080f; }
+  .btn.ghost {
+    --top: #a9bedd; --mid: var(--drift); --bot: #45597c; --shadow: #1b2c47;
+    box-shadow: 0 0 0 2px #050a14, 0 5px 0 2px #1b2c47; font-size: 22px; padding: 8px 16px 10px; min-height: 42px;
+  }
+  .btn.dive { flex: 0 0 auto; }
+
+  .err { color: var(--pink); font: 20px var(--pixel); min-height: 24px; margin: 10px 0 0; }
+
+  /* ---------- sonar / progress ---------- */
+  .sonar-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: baseline; }
+  .status-word { font: 34px/1 var(--pixel); color: var(--cyan); letter-spacing: .08em; }
+  .status-word.done { color: var(--gold); }
+  .status-word.cancel { color: var(--pink); }
+  .blink { animation: blink 1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: .25; } }
+  .meta { font: 20px var(--pixel); color: var(--drift); }
+  .meta b { color: var(--foam); font-weight: 400; }
+
+  .bar {
+    margin: 16px 0 10px; height: 26px; border: 2px solid var(--line); background: #050a14;
+    position: relative; overflow: hidden;
+  }
+  .bar .fill {
+    height: 100%; width: 0%;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 10px, #050a1455 10px 12px),
+      linear-gradient(180deg, var(--cyan-hi) 0 3px, var(--cyan) 3px calc(100% - 4px), var(--cyan-lo) calc(100% - 4px));
+    box-shadow: 0 0 16px #4de3ff88;
+    transition: width .6s var(--out);
+  }
+  .bar .pct { position: absolute; inset: 0; display: grid; place-items: center; font: 20px var(--pixel); color: var(--foam); text-shadow: 0 0 4px #000, 0 0 2px #000; }
+
+  .days { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+  .day {
+    font: 17px/1 var(--pixel); padding: 5px 8px; border: 1px solid var(--line); color: var(--drift); background: #050a14;
+  }
+  .day.done { color: var(--gold); border-color: #ffd16677; background: #ffd16612; cursor: pointer; }
+  .day.skipped { color: var(--violet); border-color: #bfa7ff55; cursor: pointer; }
+  .day.failed, .day.cancelled { color: var(--pink); border-color: #ff5d8f77; }
+  .day.empty { color: #5d739c; text-decoration: line-through; }
+  .day.now { color: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 10px #4de3ff55; }
+
+  .console {
+    font: 17px/1.3 var(--pixel); color: #9fb4d6; background: #03070f; border: 1px solid var(--line);
+    padding: 10px 12px; height: 150px; overflow-y: auto; white-space: pre-wrap; word-break: break-word;
+  }
+  .console .g { color: var(--gold); } .console .p { color: var(--pink); } .console .c { color: var(--cyan); }
+  .sonar-actions { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+
+  /* ---------- logbook ---------- */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .card {
+    text-align: left; color: inherit; font: inherit;
+    background: linear-gradient(#16263f 0 2px, #0b1526 2px); border: 2px solid var(--line);
+    padding: 12px 14px 14px; cursor: pointer; position: relative;
+    transition: transform .18s var(--snap), border-color .15s, box-shadow .15s;
+  }
+  .card:hover, .card:focus-visible { transform: translateY(-3px); border-color: var(--cyan); box-shadow: 0 6px 0 #0a3a48, 0 0 18px #4de3ff33; outline: none; }
+  .card .wd { font: 18px var(--pixel); color: var(--pink); letter-spacing: .1em; text-transform: uppercase; }
+  .card .dt { font: 30px/1 var(--pixel); color: var(--foam); margin: 4px 0 8px; }
+  .card .n { font: 18px var(--pixel); color: var(--cyan); }
+  .card .n.partial { color: var(--orange); }
+  .empty-state { text-align: center; padding: 24px 8px; color: var(--drift); font: 22px var(--pixel); }
+
+  /* ---------- summary view ---------- */
+  .sum-top { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; margin-top: 10px; }
+  .sum-title { font: 400 clamp(38px, 7vw, 56px)/1 var(--pixel); margin: 16px 0 4px; color: var(--gold); text-shadow: 0 0 16px #ffd16655; }
+  .sum-sub { font: 22px var(--pixel); color: var(--drift); margin: 0; }
+  .tools { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 6px; align-items: center; }
+  .tools input { flex: 1 1 240px; }
+  .ministries { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 4px; }
+  .ministries .chip { font-size: 17px; padding: 4px 9px; color: var(--drift); border-color: var(--line); background: #050a14; }
+  .ministries .chip.on { color: #14080f; background: var(--pink); border-color: var(--pink); }
+
+  .entry {
+    margin-top: 16px; border: 2px solid var(--line);
+    background: linear-gradient(#16263f 0 2px, #0b1526 2px 60px, #081120);
+  }
+  .entry-head {
+    display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; cursor: pointer; width: 100%;
+    background: none; border: 0; color: inherit; text-align: left; font: inherit;
+  }
+  .entry-head:focus-visible { outline: 2px solid var(--cyan); outline-offset: -2px; }
+  .sr {
+    flex: 0 0 auto; min-width: 44px; height: 44px; display: grid; place-items: center;
+    font: 28px/1 var(--pixel); color: #050a14;
+    background: linear-gradient(180deg, var(--cyan-hi) 0 3px, var(--cyan) 3px calc(100% - 4px), var(--cyan-lo) calc(100% - 4px));
+    box-shadow: 0 0 12px #4de3ff55;
+  }
+  .entry h3 { margin: 0; font: 600 16px/1.4 var(--sans); color: var(--foam); }
+  .min-tag { display: inline-block; margin-top: 6px; font: 18px/1 var(--pixel); color: var(--pink); letter-spacing: .04em; }
+  .chev { margin-left: auto; font: 24px var(--pixel); color: var(--drift); transition: transform .2s var(--out); }
+  .entry.open .chev { transform: rotate(90deg); color: var(--cyan); }
+  .entry-body { display: none; padding: 0 18px 18px 74px; }
+  .entry.open .entry-body { display: block; }
+  .entry-body p { margin: .45em 0; color: #cfdcf0; }
+  .entry-body p.lead { color: var(--gold); font-weight: 600; }
+  .entry-body ul { margin: .35em 0 .6em; padding-left: 1.3em; color: #cfdcf0; }
+  .entry-body ul ul { margin: .2em 0; }
+  .entry-body li { margin: .2em 0; }
+  .entry-body li::marker { color: var(--cyan); }
+  .entry-body strong { color: var(--foam); }
+  .entry-link { display: inline-block; margin-top: 10px; font: 20px var(--pixel); color: var(--cyan); text-decoration: none; border-bottom: 1px dashed #4de3ff88; }
+  .entry-link:hover { color: var(--cyan-hi); }
+  mark { background: #ffd16655; color: inherit; padding: 0 2px; }
+
+  footer { text-align: center; margin-top: 40px; font: 18px var(--pixel); color: #3d4f6e; }
+
+  [hidden] { display: none !important; }
+
+  @media (max-width: 560px) {
+    .panel { padding: 18px 14px 20px; }
+    .entry-body { padding: 0 14px 16px 14px; }
+    .btn.dive { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="bubbles" id="bubbles" aria-hidden="true"></div>
+
+<div class="wrap">
+  <header>
+    <h1 class="logo" id="home" title="Back to the surface">PIB<span>·</span>DEPTHS</h1>
+    <p class="tag">press releases, summarized from the deep</p>
+    <div class="depth" id="depth">logbook: <b id="depthCount">0</b> days charted</div>
+  </header>
+
+  <!-- ================= HOME ================= -->
+  <main id="homeView">
+    <section class="panel" aria-labelledby="diveTitle">
+      <div class="corner">01 · DIVE</div>
+      <h2 id="diveTitle">Choose your dive</h2>
+      <p class="sub">Pick a date or a range. Each day's releases are fetched and summarized by Gemini into one file.</p>
+      <form id="diveForm" autocomplete="off">
+        <div class="row">
+          <div class="field">
+            <label for="start">FROM</label>
+            <input type="date" id="start" required>
+          </div>
+          <div class="field">
+            <label for="end">TO</label>
+            <input type="date" id="end">
+          </div>
+          <button class="btn dive" id="diveBtn" type="submit">▼ DIVE</button>
+        </div>
+        <div class="chips">
+          <button type="button" class="chip" data-quick="1">yesterday</button>
+          <button type="button" class="chip" data-quick="0">today</button>
+          <button type="button" class="chip" data-quick="3">last 3 days</button>
+          <button type="button" class="chip" data-quick="7">last 7 days</button>
+        </div>
+        <label class="check"><input type="checkbox" id="force"> Re-summarize dates that already have a summary</label>
+        <p class="err" id="err" role="alert"></p>
+      </form>
+    </section>
+
+    <section class="panel" id="sonar" hidden aria-live="polite">
+      <div class="corner">02 · SONAR</div>
+      <div class="sonar-head">
+        <div class="status-word" id="statusWord">DESCENDING…</div>
+        <div class="meta" id="statusMeta"></div>
+      </div>
+      <div class="bar"><div class="fill" id="fill"></div><div class="pct" id="pct">0%</div></div>
+      <div class="meta" id="articleMeta"></div>
+      <div class="days" id="days"></div>
+      <div class="console" id="console"></div>
+      <div class="sonar-actions">
+        <button class="btn pink" id="cancelBtn" type="button">▲ SURFACE</button>
+        <button class="btn ghost" id="hideBtn" type="button" hidden>CLOSE</button>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="logTitle">
+      <div class="corner">03 · LOGBOOK</div>
+      <h2 id="logTitle">Charted days</h2>
+      <p class="sub">Every date with a summary file. Tap one to read it.</p>
+      <div class="grid" id="grid"></div>
+      <div class="empty-state" id="gridEmpty" hidden>No dives yet. The deep awaits.</div>
+    </section>
+  </main>
+
+  <!-- ================= SUMMARY ================= -->
+  <main id="sumView" hidden>
+    <div class="sum-top">
+      <button class="btn ghost" id="backBtn" type="button">◀ BACK</button>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn ghost" id="expandBtn" type="button">EXPAND ALL</button>
+        <button class="btn ghost" id="collapseBtn" type="button">COLLAPSE</button>
+      </div>
+    </div>
+    <h2 class="sum-title" id="sumTitle"></h2>
+    <p class="sum-sub" id="sumSub"></p>
+    <div class="tools">
+      <input type="search" id="filter" placeholder="search the summaries…" aria-label="Search summaries">
+    </div>
+    <div class="ministries" id="ministries"></div>
+    <div id="entries"></div>
+    <div class="empty-state" id="noMatch" hidden>Nothing down here matches.</div>
+  </main>
+
+  <footer>PIB·DEPTHS · local · data from pib.gov.in</footer>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const api = async (path, opts) => {
+  const r = await fetch(path, opts);
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(data.error || data.message || `HTTP ${r.status}`);
+  return data;
+};
+const iso = (d) => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+const prettyDate = (s) => new Date(s + "T00:00:00").toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+/* ---------- bubbles ---------- */
+(() => {
+  const box = $("bubbles");
+  for (let i = 0; i < 18; i++) {
+    const b = document.createElement("i");
+    const s = 3 + Math.random() * 7;
+    b.style.cssText = `left:${Math.random() * 100}%;width:${s}px;height:${s}px;animation-duration:${14 + Math.random() * 18}s;animation-delay:${-Math.random() * 30}s`;
+    box.appendChild(b);
+  }
+})();
+
+/* ---------- dive form ---------- */
+let today = iso(new Date());
+const startEl = $("start"), endEl = $("end");
+function setLimits() {
+  for (const el of [startEl, endEl]) { el.min = "2017-01-01"; el.max = today; }
+}
+setLimits();
+startEl.value = endEl.value = iso(new Date(Date.now() - 86400000));
+startEl.addEventListener("change", () => { if (!endEl.value || endEl.value < startEl.value) endEl.value = startEl.value; });
+
+document.querySelectorAll("[data-quick]").forEach((b) => b.addEventListener("click", () => {
+  const n = +b.dataset.quick;
+  const end = new Date(); if (n === 1) end.setDate(end.getDate() - 1);
+  const start = new Date(end); if (n > 1) start.setDate(start.getDate() - (n - 1));
+  startEl.value = iso(start); endEl.value = iso(end);
+}));
+
+$("diveForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  $("err").textContent = "";
+  try {
+    await api("/api/run", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ start: startEl.value, end: endEl.value || startEl.value, force: $("force").checked }),
+    });
+    sonarDismissed = false;
+    poll();
+  } catch (err) { $("err").textContent = "✖ " + err.message; }
+});
+
+/* ---------- sonar ---------- */
+let pollTimer = null, sonarDismissed = false, wasRunning = false;
+$("cancelBtn").addEventListener("click", () => api("/api/cancel", { method: "POST", body: "{}" }).catch(() => {}));
+$("hideBtn").addEventListener("click", () => { sonarDismissed = true; $("sonar").hidden = true; });
+
+async function poll() {
+  clearTimeout(pollTimer);
+  let s;
+  try { s = await api("/api/status"); } catch { pollTimer = setTimeout(poll, 3000); return; }
+  renderSonar(s);
+  if (s.running) { wasRunning = true; pollTimer = setTimeout(poll, 1200); }
+  else if (wasRunning) { wasRunning = false; loadLogbook(); }
+}
+
+function renderSonar(s) {
+  const sonar = $("sonar");
+  const hasRun = s.dates.length > 0;
+  sonar.hidden = !hasRun || (sonarDismissed && !s.running);
+  $("diveBtn").disabled = s.running;
+  if (!hasRun) return;
+
+  const total = s.dates.length;
+  const doneDays = s.results.length;
+  const partial = s.running && s.articles_total ? s.article / s.articles_total : 0;
+  const pct = Math.min(100, Math.round(((doneDays + (s.running ? partial : 0)) / total) * 100));
+  $("fill").style.width = pct + "%";
+  $("pct").textContent = pct + "%";
+
+  const word = $("statusWord");
+  if (s.running) {
+    word.textContent = s.cancelled ? "SURFACING…" : "DESCENDING…";
+    word.className = "status-word blink" + (s.cancelled ? " cancel" : "");
+  } else if (s.cancelled) { word.textContent = "SURFACED"; word.className = "status-word cancel"; }
+  else { word.textContent = "DIVE COMPLETE"; word.className = "status-word done"; }
+
+  $("statusMeta").innerHTML = s.running && s.current
+    ? `day <b>${s.day_index + 1}</b>/${total} · <b>${prettyDate(s.current)}</b>`
+    : `<b>${doneDays}</b>/${total} days`;
+  $("articleMeta").innerHTML = s.running
+    ? (s.articles_total ? `summarizing release <b>${s.article}</b> of <b>${s.articles_total}</b>`
+                        : `reading releases… <b>${s.fetched}</b> fetched`)
+    : (s.error ? `<span style="color:var(--pink)">${esc(s.error)}</span>` : "");
+
+  const res = Object.fromEntries(s.results.map((r) => [r.date, r]));
+  $("days").innerHTML = s.dates.map((d) => {
+    const r = res[d];
+    const cls = r ? r.status : (d === s.current ? "now" : "");
+    const icon = { done: "✓", skipped: "≡", failed: "✖", cancelled: "✖", empty: "∅" }[r?.status] || (d === s.current ? "▼" : "·");
+    const title = r ? r.status : (d === s.current ? "in progress" : "waiting");
+    return `<span class="day ${cls}" data-date="${d}" title="${title}">${icon} ${prettyDate(d)}</span>`;
+  }).join("");
+  $("days").querySelectorAll(".day.done,.day.skipped").forEach((el) => el.addEventListener("click", () => openSummary(el.dataset.date)));
+
+  const con = $("console");
+  const atBottom = con.scrollHeight - con.scrollTop - con.clientHeight < 30;
+  con.innerHTML = s.log.map((l) => {
+    const c = /done|Summary file/.test(l) ? "g" : /fail|Error|Traceback|cancel/i.test(l) ? "p" : /summariz/.test(l) ? "c" : "";
+    return `<div class="${c}">&gt; ${esc(l)}</div>`;
+  }).join("");
+  if (atBottom) con.scrollTop = con.scrollHeight;
+
+  $("cancelBtn").hidden = !s.running;
+  $("hideBtn").hidden = s.running;
+}
+
+/* ---------- logbook ---------- */
+async function loadLogbook() {
+  let data;
+  try { data = await api("/api/summaries"); } catch { return; }
+  today = data.today; setLimits();
+  const list = data.summaries;
+  $("depthCount").textContent = list.length;
+  $("gridEmpty").hidden = list.length > 0;
+  $("grid").innerHTML = list.map((s) => `
+    <button class="card" data-date="${s.date}">
+      <div class="wd">${s.weekday}</div>
+      <div class="dt">${s.label}</div>
+      <div class="n ${s.complete ? "" : "partial"}">${s.complete ? `${s.articles} releases` : `${s.written}/${s.articles ?? "?"} summarized`}</div>
+    </button>`).join("");
+  $("grid").querySelectorAll(".card").forEach((c) => c.addEventListener("click", () => openSummary(c.dataset.date)));
+}
+
+/* ---------- summary view ---------- */
+function renderMarkdown(md) {
+  const inline = (t) => esc(t).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, "$1<em>$2</em>");
+  const out = []; const stack = [];
+  const closeTo = (lvl) => { while (stack.length > lvl) { out.push("</ul>"); stack.pop(); } };
+  for (const raw of md.split("\n")) {
+    if (!raw.trim()) { continue; }
+    const m = raw.match(/^(\s*)(?:[•*\-–]|\d+\.)\s+(.*)$/);
+    if (m) {
+      const lvl = Math.min(3, Math.floor(m[1].replace(/\t/g, "  ").length / 2) + 1);
+      while (stack.length < lvl) { out.push("<ul>"); stack.push(1); }
+      closeTo(lvl);
+      out.push(`<li>${inline(m[2])}</li>`);
+    } else {
+      closeTo(0);
+      const t = raw.trim();
+      const lead = /^\*\*[^*]+\*\*:?$/.test(t) || /^[\p{Extended_Pictographic}].{0,90}\*\*.+\*\*\s*$/u.test(t) && t.length < 110;
+      out.push(`<p class="${lead ? "lead" : ""}">${inline(t)}</p>`);
+    }
+  }
+  closeTo(0);
+  return out.join("");
+}
+
+let current = null, activeMinistry = null;
+
+async function openSummary(dateStr, push = true) {
+  let data;
+  try { data = await api("/api/summary?date=" + encodeURIComponent(dateStr)); }
+  catch (err) { $("err").textContent = "✖ " + err.message; return; }
+  current = data; activeMinistry = null; $("filter").value = "";
+  $("homeView").hidden = true; $("sumView").hidden = false;
+  $("sumTitle").textContent = data.label;
+  $("sumSub").textContent = `${data.weekday} · ${data.entries.length} releases`;
+
+  const mins = [...new Set(data.entries.map((e) => e.ministry).filter(Boolean))];
+  $("ministries").innerHTML = mins.map((m) => `<button type="button" class="chip" data-min="${esc(m)}">${esc(m)}</button>`).join("");
+  $("ministries").querySelectorAll(".chip").forEach((c) => c.addEventListener("click", () => {
+    activeMinistry = activeMinistry === c.dataset.min ? null : c.dataset.min;
+    $("ministries").querySelectorAll(".chip").forEach((x) => x.classList.toggle("on", x.dataset.min === activeMinistry));
+    renderEntries();
+  }));
+  renderEntries(true);
+  if (push) history.pushState({ date: dateStr }, "", "#" + dateStr);
+  window.scrollTo({ top: 0 });
+}
+
+function renderEntries(firstOpen = false) {
+  const q = $("filter").value.trim().toLowerCase();
+  const hl = (html) => {
+    if (!q) return html;
+    const re = new RegExp("(" + q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+    return html.replace(/>([^<]+)</g, (m, txt) => ">" + txt.replace(re, "<mark>$1</mark>") + "<");
+  };
+  const list = current.entries.filter((e) =>
+    (!activeMinistry || e.ministry === activeMinistry) &&
+    (!q || (e.title + " " + e.ministry + " " + e.summary).toLowerCase().includes(q)));
+  $("noMatch").hidden = list.length > 0;
+  $("entries").innerHTML = list.map((e, i) => `
+    <article class="entry ${firstOpen && i === 0 || q ? "open" : ""}">
+      <button class="entry-head" type="button" aria-expanded="${firstOpen && i === 0 || !!q}">
+        <span class="sr">${e.sr}</span>
+        <span><h3>${hl(">" + esc(e.title) + "<").slice(1, -1)}</h3><span class="min-tag">${esc(e.ministry)}</span></span>
+        <span class="chev">▶</span>
+      </button>
+      <div class="entry-body">
+        ${hl(renderMarkdown(e.summary || "(no summary)"))}
+        ${e.link ? `<a class="entry-link" href="${esc(e.link)}" target="_blank" rel="noopener">read full release on PIB ↗</a>` : ""}
+      </div>
+    </article>`).join("");
+  $("entries").querySelectorAll(".entry-head").forEach((h) => h.addEventListener("click", () => {
+    const art = h.parentElement; art.classList.toggle("open");
+    h.setAttribute("aria-expanded", art.classList.contains("open"));
+  }));
+}
+$("filter").addEventListener("input", () => renderEntries());
+$("expandBtn").addEventListener("click", () => document.querySelectorAll(".entry").forEach((e) => e.classList.add("open")));
+$("collapseBtn").addEventListener("click", () => document.querySelectorAll(".entry").forEach((e) => e.classList.remove("open")));
+
+function goHome(push = true) {
+  $("sumView").hidden = true; $("homeView").hidden = false;
+  if (push) history.pushState({}, "", location.pathname);
+  loadLogbook();
+}
+$("backBtn").addEventListener("click", () => goHome());
+$("home").addEventListener("click", () => goHome());
+window.addEventListener("popstate", () => {
+  const d = location.hash.slice(1);
+  if (/^\d{4}-\d{2}-\d{2}$/.test(d)) openSummary(d, false); else goHome(false);
+});
+
+/* ---------- boot ---------- */
+loadLogbook();
+poll();
+const initial = location.hash.slice(1);
+if (/^\d{4}-\d{2}-\d{2}$/.test(initial)) openSummary(initial, false);
+</script>
+</body>
+</html>

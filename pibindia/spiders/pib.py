@@ -15,7 +15,7 @@ from pibindia.modules.tg_summary import *
 from pibindia.modules.get_article import *
 
 # url = 'https://archive.pib.gov.in/archive2/erelease.aspx/'
-url = "https://pib.gov.in/AllRelease.aspx"
+url = config.PIB_LISTING_URL
 pib_url = "https://pib.gov.in/PressReleaseIframePage.aspx?PRID="
 cwd = Path.cwd()
 
@@ -26,7 +26,7 @@ pib_json_data = []
 
 class PibSpider(scrapy.Spider):
     name = "pib"
-    start_urls = ["https://pib.gov.in/AllRelease.aspx"]
+    start_urls = [config.PIB_LISTING_URL]
 
     def parse(self, response):
         # self.rel_date = self.rel_date_fn()
@@ -72,7 +72,8 @@ class PibSpider(scrapy.Spider):
             "//div[contains(@class,'content-area')]/ul[contains(@class,'num')]/li/a[contains(@href,'PRID')]"
         ):
             pib_prid = str(articles.xpath("@href").get()).split("=", 1)[1]
-            pib_title_unnorm = str(articles.xpath("@title").get())[:90]
+            full_title = str(articles.xpath("@title").get())
+            pib_title_unnorm = full_title[:90]  # short version only for the PDF file name
 
             pib_title_norm = remove_html_entities(pib_title_unnorm)
 
@@ -92,7 +93,7 @@ class PibSpider(scrapy.Spider):
                 article_jdata(
                     pib_prid,
                     jdate,
-                    pib_title_unnorm,
+                    full_title,
                     pib_min_unnorm,
                     pib_prlink,
                     article_data,
@@ -133,9 +134,12 @@ class PibSpider(scrapy.Spider):
         if is_valid_json(str(pib_json_data)):
             save_json(jfpath, pib_json_data)
 
-        pdf_path = make_file_path(min_path, art_title)
-        if check_file(pdf_path):
+        # PDF is named by PRID only, e.g. "2283857.pdf" (art_title ends with "_<PRID>.pdf")
+        pdf_name = art_title.rsplit("_", 1)[-1]
+        pdf_path = make_file_path(min_path, pdf_name)
+        if config.ENABLE_TELEGRAM and check_file(pdf_path):
             summary_post = summarize_text(art_data)
             post_to_telegram(summary_post)
 
-        download_article(pdf_path, art_link)
+        if config.ENABLE_PDF_DOWNLOAD:
+            download_article(pdf_path, art_link)

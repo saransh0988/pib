@@ -1,72 +1,18 @@
 import os
 import time
 import requests
-from scrapy.selector import Selector
-from llama_cpp import Llama
 import re
+
+import pibindia.spiders.config as config
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
-llm = Llama(
-    model_path="models/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
-    n_ctx=2048,
-    n_threads=2,
-    n_batch=128,
-    use_mlock=True,
-    verbose=False,
-)
+# Set in the environment (locally: `source .secrets`; in GitHub Actions: a repo secret)
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
-def escape_md(text):
-    return re.sub(r"([_*\[\]()~`>#+\\-=|{}.!])", r"\\\1", text)
-
-def count_tokens(text):
-    return len(llm.tokenize(text.encode("utf-8")))
-
-def clean_text(text):
-    return re.sub(r"(Click here.*|For more information.*)", "", text, flags=re.I)
-
-def split_text_by_tokens(text, max_tokens=1500):
-    tokens = llm.tokenize(text.encode("utf-8"))
-    chunks = []
-    start = 0
-    while start < len(tokens):
-        end = start + max_tokens
-        chunk = llm.detokenize(tokens[start:end]).decode("utf-8", errors="ignore")
-        chunks.append(chunk)
-        start = end
-    return chunks
-
-def safe_llm_call(prompt, max_tokens, retries=3):
-    for attempt in range(retries):
-        try:
-            return llm(prompt, max_tokens=max_tokens, temperature=0.3, top_p=0.95)
-        except Exception as e:
-            print(f"LLM error (attempt {attempt+1}): {e}")
-            time.sleep(2)
-    return {"choices": [{"text": ""}]}
-
-def summarize_text(text, max_chunk_tokens=None):
-    text = clean_text(text)
-    token_count = count_tokens(text)
-    print(f"Total token count: {token_count}")
-
-    # Auto-adjust chunk size based on model context
-    if max_chunk_tokens is None:
-        max_chunk_tokens = int(llm.n_ctx * 0.75)
-
-    if token_count > max_chunk_tokens:
-        chunks = split_text_by_tokens(text, max_chunk_tokens)
-    else:
-        chunks = [text]
-
-    summaries = []
-    for i, chunk in enumerate(chunks, 1):
-        chunk_tokens = count_tokens(chunk)
-        max_summary_tokens = min(int(chunk_tokens * 0.25), 512)
-        print(f"Processing chunk {i}/{len(chunks)} ({chunk_tokens} tokens) → summary cap: {max_summary_tokens}")
-
-        prompt = f"""
+PROMPT = """
 Summarize ONLY the provided PIB press release text.
 
 🎯 Guidelines:
@@ -86,16 +32,67 @@ Summarize ONLY the provided PIB press release text.
 Output must be short, very precise, and ready to post.
 
 Text:
-{chunk}
+{text}
 """
-        result = safe_llm_call(prompt, max_summary_tokens)
-        summaries.append(result["choices"][0]["text"].strip())
 
-        time.sleep(1)
 
-    final_summary = " ".join(summaries)
-    print(f"Final summary length: {count_tokens(final_summary)} tokens")
-    return final_summary
+def escape_md(text):
+    return re.sub(r"([_*\[\]()~`>#+\\-=|{}.!])", r"\\\1", text)
+
+
+def clean_text(text):
+    return re.sub(r"(Click here.*|For more information.*)", "", text, flags=re.I)
+
+
+def gemini_generate(prompt, retries=5):
+    """Send one prompt to Gemini and return the reply text ("" if it fails)."""
+    if not GEMINI_API_KEY:
+        raise RuntimeError("GEMINI_API_KEY is not set (run `source .secrets` first)")
+
+    url = GEMINI_URL.format(model=config.GEMINI_MODEL)
+    headers = {"x-goog-api-key": GEMINI_API_KEY, "Content-Type": "application/json"}
+    body = {
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {"temperature": 0.3},
+    }
+
+    for attempt in range(1, retries + 1):
+        try:
+            res = requests.post(url, headers=headers, json=body, timeout=120)
+        except requests.exceptions.RequestException as e:
+            print(f"Gemini request failed (attempt {attempt}/{retries}): {e}")
+            time.sleep(2**attempt)
+            continue
+
+        if res.status_code == 200:
+            data = res.json()
+            candidates = data.get("candidates") or []
+            if not candidates:
+                print(f"Gemini returned no answer: {data.get('promptFeedback')}")
+                return ""
+            parts = candidates[0].get("content", {}).get("parts", [])
+            return "".join(p.get("text", "") for p in parts).strip()
+
+        # 429 = rate limit, 5xx = server problem: wait and retry. Anything else: give up.
+        if res.status_code == 429 or res.status_code >= 500:
+            wait = 2**attempt * 5 if res.status_code == 429 else 2**attempt
+            print(f"Gemini error {res.status_code} (attempt {attempt}/{retries}), retrying in {wait}s")
+            time.sleep(wait)
+            continue
+
+        print(f"Gemini error {res.status_code}: {res.text[:300]}")
+        return ""
+
+    print(f"Gemini failed after {retries} attempts")
+    return ""
+
+
+def summarize_text(text):
+    # Gemini takes ~1M tokens of input, so a press release never needs chunking
+    text = clean_text(text)
+    print(f"Summarizing with {config.GEMINI_MODEL} ({len(text)} chars)")
+    return gemini_generate(PROMPT.format(text=text))
+
 
 def post_to_telegram(message):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"

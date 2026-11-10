@@ -135,3 +135,9 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Local secrets (API keys) - never commit
+.secrets
+
+# Local LLM model files (multi-GB, not for git)
+models/
