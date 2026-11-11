@@ -48,11 +48,11 @@ python webapp/server.py
 
 Open **http://127.0.0.1:8000** in your browser. The server reads the Gemini key from `.secrets` by itself. Press `Ctrl+C` in the terminal to stop it.
 
-- **Dive**: pick a start and end date (up to 31 days) and press **DIVE**. Dates that already have a summary are skipped unless you tick *Re-summarize*.
+- **Dive**: pick a start and end date (up to 31 days) and press **DIVE**. Dates that already have a complete summary are skipped unless you tick *Re-summarize*; partial ones are finished.
 - **Sonar**: live progress for each day and article. **SURFACE** stops the run.
 - **Logbook**: every date that has a summary file. Click one to read it, search the text or filter by ministry.
 
-The server only listens on your own computer. Use another port with `PIB_WEB_PORT=8080 python webapp/server.py`.
+By default the server only listens on your own computer. To open it on a phone on the same Wi-Fi, start it with `PIB_WEB_HOST=0.0.0.0 python webapp/server.py` and use the phone address it prints (anyone on that Wi-Fi can then use it). Use another port with `PIB_WEB_PORT=8080`.
 
 > Always start the server from the `pib` environment. The spider runs with the same Python as the server.
 
@@ -101,14 +101,20 @@ Edit `pibindia/spiders/config.py`:
 | Setting | Default | Meaning |
 |---|---|---|
 | `ENABLE_DAILY_SUMMARY` | `True` | Write the per-date Gemini summary file |
-| `GEMINI_MODEL` | `gemini-3.5-flash` | Gemini model used for summaries |
+| `GEMINI_MODELS` | 6 free-tier models | Models tried in order; the next one is used when one reaches its limit |
 | `ENABLE_PDF_DOWNLOAD` | `False` | Save each release as a PDF (needs `wkhtmltopdf`) |
 | `ENABLE_TELEGRAM` | `False` | Post each summary to Telegram (needs `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`) |
 | `PIB_LISTING_URL` | English listing | `lang=1` selects English; the site defaults to Hindi without it |
 
 ## Gemini limits
 
-The free tier allows a limited number of requests per model per day (20 at the time of writing), and one request is made per article. A busy day has 50 to 70 releases, so free-tier runs stop with `429 RESOURCE_EXHAUSTED` once the limit is reached. The limit resets daily. Turn on billing for your Google project for higher limits.
+Each Gemini model has its own free-tier limits, for example 20 requests per day and 5 per minute for the Flash models and 500 per day for `gemini-3.5-flash-lite`. One request is made per article, and a busy day has 50 to 70 releases. To get through more articles the summarizer rotates through `GEMINI_MODELS`:
+
+- **Per-minute limit** on a model: the next model is used straight away. If every model is at its per-minute limit, it waits the few seconds Google asks for.
+- **Daily limit** on a model: that model is skipped until Google's daily reset. This is remembered in `~/pib/gemini_quota.json`, so later dates don't waste requests on it.
+- **Every model used up**: the run stops. The summary file keeps what was done and the website marks the date as partial (◐); remaining dates in the range are not started (⧗). Run the same dates again after the reset: summaries already written are reused and only the missing articles are sent to Gemini.
+
+With the default list that is roughly 600 articles a day on the free tier. Turn on billing for your Google project for higher limits.
 
 ## Project layout
 

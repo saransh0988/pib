@@ -21,7 +21,23 @@ WEB_DIR = Path(__file__).resolve().parent
 SUMMARY_DIR = Path("~/pib/summaries").expanduser()
 SECRETS = ROOT / ".secrets"
 
-HOST, PORT = "127.0.0.1", int(os.getenv("PIB_WEB_PORT", "8000"))
+# 127.0.0.1 = this computer only; PIB_WEB_HOST=0.0.0.0 also allows phones on the same Wi-Fi
+HOST = os.getenv("PIB_WEB_HOST", "127.0.0.1")
+PORT = int(os.getenv("PIB_WEB_PORT", "8000"))
+
+
+def lan_ip():
+    """This computer's address on the local network (best guess)."""
+    import socket
+
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        s.connect(("10.255.255.255", 1))  # no packet is sent; just picks the outgoing interface
+        return s.getsockname()[0]
+    except OSError:
+        return None
+    finally:
+        s.close()
 FIRST_DATE = date(2017, 1, 1)  # main PIB site's year dropdown starts at 2017
 MAX_DAYS = 31
 SEPARATOR = "-" * 80
@@ -44,6 +60,21 @@ def file_date(d):
 
 def summary_path(d):
     return SUMMARY_DIR / f"{file_date(d)}.txt"
+
+
+def summary_progress(text):
+    """(articles in header, articles written) for a summary file's text."""
+    m = re.search(r"\((\d+) articles\)", text.split("\n", 1)[0])
+    total = int(m.group(1)) if m else None
+    return total, text.count(SEPARATOR)  # one separator per finished article
+
+
+def summary_complete(d):
+    p = summary_path(d)
+    if not p.exists():
+        return False
+    total, written = summary_progress(p.read_text(encoding="utf-8"))
+    return total is not None and written >= total
 
 
 # ---------------------------------------------------------------- summaries
@@ -88,10 +119,7 @@ def list_summaries():
                 d = datetime.strptime(p.stem, "%d_%b_%Y").date()
             except ValueError:
                 continue
-            text = p.read_text(encoding="utf-8")
-            m = re.search(r"\((\d+) articles\)", text.split("\n", 1)[0])
-            total = int(m.group(1)) if m else None
-            written = text.count(SEPARATOR)  # one separator per finished article
+            total, written = summary_progress(p.read_text(encoding="utf-8"))
             out.append({
                 "date": d.isoformat(),
                 "label": d.strftime("%d %b %Y"),
@@ -129,6 +157,7 @@ class Job:
         self.started = None
         self.finished = None
         self.error = None
+        self.quota_out = False  # Gemini daily limit used up on every model
 
     def add_log(self, line):
         self.log.append(line)
@@ -184,9 +213,13 @@ class Job:
                 with self.lock:
                     if self.cancel_requested:
                         break
+                    if self.quota_out:
+                        self.results.append({"date": d.isoformat(), "status": "quota", "articles": None})
+                        self.add_log(f"{d}: not started, Gemini free quota used up for today")
+                        continue
                     self.day_index, self.current = i, d
                     self.article, self.articles_total, self.fetched = 0, 0, 0
-                if not force and summary_path(d).exists():
+                if not force and summary_complete(d):
                     with self.lock:
                         self.results.append({"date": d.isoformat(), "status": "skipped", "articles": None})
                         self.add_log(f"{d}: summary already exists, skipped")
@@ -221,8 +254,12 @@ class Job:
                 elif m := re.match(r"Summarizing article (\d+)/(\d+)", line):
                     self.article, self.articles_total = int(m.group(1)), int(m.group(2))
                     self.add_log(f"{d}: summarizing {m.group(1)}/{m.group(2)}")
+                elif line.startswith("Gemini") and line.endswith(": ok"):
+                    pass  # one per article, too chatty for the console
                 elif line.startswith(("Gemini", "Summary file done", "No articles", "Traceback")) \
                         or "Error" in line:
+                    if line.startswith("Gemini quota exhausted"):
+                        self.quota_out = True
                     self.add_log(f"{d}: {line}")
         code = proc.wait()
         with self.lock:
@@ -230,8 +267,10 @@ class Job:
                 status = "cancelled"
             elif code != 0:
                 status = "failed"
-            elif summary_path(d).exists():
+            elif summary_complete(d):
                 status = "done"
+            elif summary_path(d).exists():
+                status = "partial"  # stopped by Gemini quota; run again later to finish
             else:
                 status = "empty"  # no releases that day
             self.results.append({"date": d.isoformat(), "status": status,
@@ -320,7 +359,14 @@ class Handler(BaseHTTPRequestHandler):
 
 def main():
     server = ThreadingHTTPServer((HOST, PORT), Handler)
-    print(f"PIB Depths running at http://{HOST}:{PORT}  (Ctrl+C to stop)")
+    if HOST == "0.0.0.0":
+        print(f"PIB Depths running at http://127.0.0.1:{PORT} on this computer")
+        ip = lan_ip()
+        if ip:
+            print(f"On your phone (same Wi-Fi):  http://{ip}:{PORT}")
+        print("(Ctrl+C to stop)")
+    else:
+        print(f"PIB Depths running at http://{HOST}:{PORT}  (Ctrl+C to stop)")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

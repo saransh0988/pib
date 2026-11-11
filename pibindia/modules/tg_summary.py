@@ -1,5 +1,7 @@
+import json
 import os
 import time
+from pathlib import Path
 import requests
 import re
 
@@ -44,53 +46,163 @@ def clean_text(text):
     return re.sub(r"(Click here.*|For more information.*)", "", text, flags=re.I)
 
 
-def gemini_generate(prompt, retries=5):
-    """Send one prompt to Gemini and return the reply text ("" if it fails)."""
+class GeminiQuotaExhausted(Exception):
+    """Every model in config.GEMINI_MODELS has used up its daily free limit."""
+
+
+# ---- model fallback ---------------------------------------------------------
+# Each model has its own free quota. We use the first model in config.GEMINI_MODELS
+# that is not "blocked". A 429 tells us which limit was hit and how long to wait:
+#   per-day limit    -> model blocked for many hours (until Google's daily reset)
+#   per-minute limit -> model blocked for a few seconds; the next model is used meanwhile
+# Blocks are saved in config.GEMINI_QUOTA_FILE, so the next date's run (a new process)
+# does not waste requests on a model that is already used up.
+
+MINUTE_LIMIT_MAX_WAIT = 60  # a block shorter than this is a per-minute limit: worth waiting for
+_dead_models = set()  # unknown / unusable models, for this process only
+
+
+def _quota_file():
+    return Path(config.GEMINI_QUOTA_FILE).expanduser()
+
+
+def _load_blocks():
+    try:
+        return json.loads(_quota_file().read_text())
+    except (OSError, ValueError):
+        return {}
+
+
+def _block(models, seconds, reason):
+    blocks = _load_blocks()
+    until = time.time() + seconds
+    for m in models:
+        blocks[m] = {"until": until, "reason": reason}
+    now = time.time()
+    blocks = {m: b for m, b in blocks.items() if b["until"] > now}  # drop expired
+    path = _quota_file()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(blocks, indent=1))
+
+
+def _parse_429(res):
+    """Return (is_daily_limit, wait_seconds, quota_model) from a 429 response."""
+    daily, wait, quota_model = False, 60.0, None
+    try:
+        details = res.json()["error"].get("details", [])
+    except (ValueError, KeyError, AttributeError):
+        return daily, wait, quota_model
+    for d in details:
+        kind = d.get("@type", "")
+        if kind.endswith("RetryInfo"):
+            m = re.match(r"([\d.]+)s", d.get("retryDelay", ""))
+            if m:
+                wait = float(m.group(1))
+        elif kind.endswith("QuotaFailure"):
+            for v in d.get("violations", []):
+                if "PerDay" in v.get("quotaId", ""):
+                    daily = True
+                # aliases share quota, e.g. gemini-3.5-flash is counted as gemini-3.6-flash
+                quota_model = v.get("quotaDimensions", {}).get("model") or quota_model
+    if daily:
+        wait = max(wait, 3600)
+    return daily, wait, quota_model
+
+
+def _pick_model():
+    """First usable model, or (None, seconds until the earliest short block ends)."""
+    blocks = _load_blocks()
+    now = time.time()
+    soonest = None
+    for m in config.GEMINI_MODELS:
+        if m in _dead_models:
+            continue
+        until = blocks.get(m, {}).get("until", 0)
+        if until <= now:
+            return m, 0
+        if until - now <= MINUTE_LIMIT_MAX_WAIT:
+            soonest = min(soonest or until - now, until - now)
+    return None, soonest
+
+
+def gemini_generate(prompt):
+    """Send one prompt to Gemini and return the reply text.
+
+    Returns "" if this prompt cannot be answered (blocked by safety filters, bad request).
+    Raises GeminiQuotaExhausted when no model has free quota left today.
+    """
     if not GEMINI_API_KEY:
         raise RuntimeError("GEMINI_API_KEY is not set (run `source .secrets` first)")
 
-    url = GEMINI_URL.format(model=config.GEMINI_MODEL)
     headers = {"x-goog-api-key": GEMINI_API_KEY, "Content-Type": "application/json"}
     body = {
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {"temperature": 0.3},
     }
+    server_errors = {}
 
-    for attempt in range(1, retries + 1):
-        try:
-            res = requests.post(url, headers=headers, json=body, timeout=120)
-        except requests.exceptions.RequestException as e:
-            print(f"Gemini request failed (attempt {attempt}/{retries}): {e}")
-            time.sleep(2**attempt)
+    for _ in range(4 * len(config.GEMINI_MODELS) + 10):
+        model, wait = _pick_model()
+        if model is None:
+            if wait is None:
+                raise GeminiQuotaExhausted(
+                    "Gemini quota exhausted: every model has used its daily free limit"
+                )
+            print(f"Gemini: every model is busy or at its per-minute limit, waiting {wait:.0f}s")
+            time.sleep(wait + 1)
             continue
 
-        if res.status_code == 200:
+        try:
+            res = requests.post(GEMINI_URL.format(model=model), headers=headers,
+                                json=body, timeout=60)
+        except requests.exceptions.RequestException as e:
+            res, err = None, str(e)
+
+        if res is not None and res.status_code == 200:
             data = res.json()
             candidates = data.get("candidates") or []
             if not candidates:
-                print(f"Gemini returned no answer: {data.get('promptFeedback')}")
+                print(f"Gemini {model} returned no answer: {data.get('promptFeedback')}")
                 return ""
             parts = candidates[0].get("content", {}).get("parts", [])
-            return "".join(p.get("text", "") for p in parts).strip()
+            text = "".join(p.get("text", "") for p in parts).strip()
+            print(f"Gemini {model}: ok")
+            return text
 
-        # 429 = rate limit, 5xx = server problem: wait and retry. Anything else: give up.
-        if res.status_code == 429 or res.status_code >= 500:
-            wait = 2**attempt * 5 if res.status_code == 429 else 2**attempt
-            print(f"Gemini error {res.status_code} (attempt {attempt}/{retries}), retrying in {wait}s")
-            time.sleep(wait)
+        if res is not None and res.status_code == 429:
+            daily, wait, quota_model = _parse_429(res)
+            kind = "daily" if daily else "per-minute"
+            print(f"Gemini {model}: {kind} limit reached, trying next model")
+            _block({model, quota_model} - {None}, wait, kind)
             continue
 
-        print(f"Gemini error {res.status_code}: {res.text[:300]}")
+        if res is not None and res.status_code == 404:  # model renamed or retired
+            print(f"Gemini {model}: not available ({res.status_code}), skipping it")
+            _dead_models.add(model)
+            continue
+
+        if res is None or res.status_code >= 500:
+            # network trouble or Google overloaded: retry, after 2 failures rest the model
+            server_errors[model] = server_errors.get(model, 0) + 1
+            detail = err if res is None else f"error {res.status_code}"
+            print(f"Gemini {model}: {detail}")
+            if server_errors[model] >= 2:
+                _block([model], 60, "server errors")
+                server_errors[model] = 0
+            time.sleep(2)
+            continue
+
+        print(f"Gemini {model} error {res.status_code}: {res.text[:300]}")
         return ""
 
-    print(f"Gemini failed after {retries} attempts")
+    print("Gemini failed after many attempts")
     return ""
 
 
 def summarize_text(text):
     # Gemini takes ~1M tokens of input, so a press release never needs chunking
     text = clean_text(text)
-    print(f"Summarizing with {config.GEMINI_MODEL} ({len(text)} chars)")
+    print(f"Summarizing ({len(text)} chars)")
     return gemini_generate(PROMPT.format(text=text))
 
 

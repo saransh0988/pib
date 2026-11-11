@@ -181,6 +181,8 @@
   .day.skipped { color: var(--violet); border-color: #bfa7ff55; cursor: pointer; }
   .day.failed, .day.cancelled { color: var(--pink); border-color: #ff5d8f77; }
   .day.empty { color: #5d739c; text-decoration: line-through; }
+  .day.partial { color: var(--gold); border-color: #ffd16655; border-style: dashed; cursor: pointer; }
+  .day.quota { color: #5d739c; border-style: dashed; }
   .day.now { color: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 10px #4de3ff55; }
 
   .console {
@@ -444,11 +446,11 @@ function renderSonar(s) {
   $("days").innerHTML = s.dates.map((d) => {
     const r = res[d];
     const cls = r ? r.status : (d === s.current ? "now" : "");
-    const icon = { done: "✓", skipped: "≡", failed: "✖", cancelled: "✖", empty: "∅" }[r?.status] || (d === s.current ? "▼" : "·");
-    const title = r ? r.status : (d === s.current ? "in progress" : "waiting");
+    const icon = { done: "✓", skipped: "≡", failed: "✖", cancelled: "✖", empty: "∅", partial: "◐", quota: "⧗" }[r?.status] || (d === s.current ? "▼" : "·");
+    const title = r ? ({ partial: "partly summarized: Gemini quota ran out, run again later", quota: "not started: Gemini quota used up today" }[r.status] || r.status) : (d === s.current ? "in progress" : "waiting");
     return `<span class="day ${cls}" data-date="${d}" title="${title}">${icon} ${prettyDate(d)}</span>`;
   }).join("");
-  $("days").querySelectorAll(".day.done,.day.skipped").forEach((el) => el.addEventListener("click", () => openSummary(el.dataset.date)));
+  $("days").querySelectorAll(".day.done,.day.skipped,.day.partial").forEach((el) => el.addEventListener("click", () => openSummary(el.dataset.date)));
 
   const con = $("console");
   const atBottom = con.scrollHeight - con.scrollTop - con.clientHeight < 30;
